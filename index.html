@@ -1,71 +1,82 @@
+
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <body>
-    <div class="caixa-principal">
-    <h1>Você decide o futuro da IA</h1>
-    <div class="caixa-perguntas"></div>
-    <div class="caixa-alternativas"></div>
-    <div class="caixa-resultado">
-        <p class="texto-resultado"></p>
+  <meta name="description" content="Um jogo interativo para refletir sobre meritocracia, sociedade e inteligência artificial.">
+
+  <title>Meritocracia e sociedade</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="caixa-principal">
+    <header class="cabecalho">
+      <p class="subtitulo">COMO SUAS ATITUDES IMPACTAM A SOCIEDADE</p>
+
+      <h1>Você decide o futuro da IA</h1>
+
+      <p class="introducao">
+        Entenda a meritocracia, reflita sobre suas atitudes e descubra como a sociedade pode melhorar.
+      </p>
+    </header>
+
+    <div class="progresso">
+      <div class="progresso-info">
+        <span id="numero-pergunta">Pergunta 1 de 5</span>
+        <span id="porcentagem">20%</span>
+      </div>
+
+      <div
+        class="barra-progresso"
+        role="progressbar"
+        aria-label="Progresso do jogo"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="20"
+      >
+        <div class="barra-progresso-preenchida"></div>
+      </div>
     </div>
-  </div>
-  <script src="script.js"></script>
-  </body>
+
+    <section class="conteudo-jogo" aria-label="Perguntas do jogo">
+      <p class="etiqueta">SUA ESCOLHA</p>
+
+      <h2 class="caixa-perguntas" tabindex="-1"></h2>
+
+      <div class="caixa-alternativas"></div>
+
+      <div class="caixa-feedback" hidden aria-live="polite">
+        <p class="feedback-etiqueta">REFLITA SOBRE SUA ESCOLHA</p>
+        <p class="texto-feedback"></p>
+        <button type="button" class="botao-proxima">
+          Próxima pergunta →
+        </button>
+      </div>
+    </section>
+
+    <section class="caixa-resultado" hidden aria-live="polite">
+      <p class="subtitulo">SUA JORNADA TERMINOU</p>
+
+      <h2>O futuro começa com você.</h2>
+
+      <p class="texto-resultado"></p>
+
+      <div class="resumo-escolhas"></div>
+
+      <button type="button" class="botao-reiniciar">
+        Jogar novamente ↻
+      </button>
+    </section>
+
+    <footer>
+      <span>Enquanto não houver oportunidades iguais, não se poderá falar em meritocracia.</span>
+      <span aria-hidden="true">•</span>
+      <span>Não se deve julgar o mérito de uma pessoa apenas por suas qualidades, mas pelo uso que faz delas.</span>
+    </footer>
+  </main>
+</body>
 </html>
-
-const perguntas = [
-  {
-    enunciado:
-      "Assim que saiu da escola você se depara com uma nova tecnologia, um chat que consegue responder todas as dúvidas que uma pessoa pode ter, ele também gera imagens e áudios hiper-realistas. Qual o primeiro pensamento?",
-    alternativas: ["Isso é assustador!", "Isso é maravilhoso!"],
-  },
-  {
-    enunciado:
-      "Com a descoberta desta tecnologia, chamada Inteligência Artificial (IA), uma professora de tecnologia da escola decidiu fazer uma sequência de aulas sobre esta tecnologia. No fim de uma aula ela pede que você escreva um trabalho sobre o uso de IA em sala de aula. Qual atitude você toma?",
-    alternativas: [
-      "Utiliza uma ferramenta de busca na internet que utiliza IA para que ela ajude a encontrar informações relevantes para o trabalho e explique numa linguagem que facilite o entendimento.",
-      "Escreve o trabalho com base nas conversas que teve com colegas, algumas pesquisas na internet e conhecimentos próprios sobre o tema.",
-    ],
-  },
-  {
-    enunciado:
-      "Após a elaboração do trabalho, a professora realizou um debate entre a turma para entender como foi realizada a pesquisa e escrita. Nessa conversa também foi levantado um ponto muito importante: como a IA impacta o trabalho do futuro. Nesse debate, como você se posiciona?",
-    alternativas: [
-      "Defende a ideia de que a IA pode criar novas oportunidades de emprego e melhorar habilidades humanas.",
-      "Me preocupo com as pessoas que perderão seus empregos para máquinas e defendo a importância de proteger os trabalhadores.",
-    ],
-  },
-  {
-    enunciado:
-      "Ao final da discussão, você precisou criar uma imagem no computador que representasse o que pensa sobre IA. E agora?",
-    alternativas: [
-      "Criar uma imagem utilizando uma plataforma de design como o Paint.",
-      "Criar uma imagem utilizando um gerador de imagem de IA.",
-    ],
-  },
-  {
-    enunciado:
-      "Você tem um trabalho em grupo de biologia para entregar na semana seguinte, o andamento do trabalho está um pouco atrasado e uma pessoa do seu grupo decidiu fazer com ajuda de uma IA. O problema é que o trabalho está totalmente igual ao do chat. O que você faz?",
-    alternativas: [
-      "Escrever comandos para o chat é uma forma de contribuir com o trabalho, por isso não é um problema utilizar o texto inteiro.",
-      "O chat pode ser uma tecnologia muito avançada, mas é preciso manter a atenção pois toda máquina erra, por isso revisar o trabalho e contribuir com as perspectivas pessoais é essencial.",
-    ],
-  },
-];
-let atual = 0;
-let perguntaAtual;
-
-function mostraPergunta() {
-  perguntaAtual = perguntas[atual];
-  caixaPerguntas.textContent = perguntaAtual.enunciado;
-}
-
-mostraPergunta();
